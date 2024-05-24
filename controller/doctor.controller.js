@@ -30,6 +30,24 @@ exports.create = async (req, res) => {
 
 exports.findAll = async (req, res) => {
   try {
+    const doctors = await Doctor.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .populate({
+        path: "doctor_id",
+        select: "name",
+      });
+
+    res.status(200).json(doctors);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message || "Some error occurred while retrieving doctors.",
+    });
+  }
+};
+
+exports.findMore = async (req, res) => {
+  try {
     const doctor = await Doctor.find().populate({
       path: "doctor_id",
       select: "name",
@@ -42,6 +60,7 @@ exports.findAll = async (req, res) => {
     });
   }
 };
+
 
 exports.findOne = async (req, res) => {
   try {
