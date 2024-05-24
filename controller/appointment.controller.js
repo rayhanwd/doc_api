@@ -138,7 +138,7 @@ exports.findUserSingleAppointment = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "An error occurred while retrieving user appointments.",
+      message: error,
     });
   }
 };
