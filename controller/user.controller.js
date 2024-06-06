@@ -24,3 +24,22 @@ exports.getUserData = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+exports.UpdateUserData = async (req, res) => {
+  try {
+    const { _id } = req.user;
+
+    const user = await User.findById(_id).select("-password");
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const updated = await User.findByIdAndUpdate(_id, req.body);
+
+    return res.json(updated);
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
