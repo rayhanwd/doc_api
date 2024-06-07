@@ -2,21 +2,27 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define Service Schema
-const serviceSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-    unique: true,
+const serviceSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    uri: {
+      type: String,
+      required: true,
+    },
   },
-  description: {
-    type: String,
-    required: true,
-  },
-},
-{
-  versionKey: false,
-  timestamps: true,
-});
+  {
+    versionKey: false,
+    timestamps: true,
+  }
+);
 
 const Service = mongoose.model("Service", serviceSchema);
 
