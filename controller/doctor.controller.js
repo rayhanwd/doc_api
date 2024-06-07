@@ -50,7 +50,7 @@ exports.findMore = async (req, res) => {
   try {
     const doctor = await Doctor.find().populate({
       path: "doctor_id",
-      select: "name",
+      select: "name profile",
     });
     res.status(200).json(doctor);
   } catch (error) {
