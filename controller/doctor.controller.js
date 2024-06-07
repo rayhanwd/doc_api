@@ -35,7 +35,7 @@ exports.findAll = async (req, res) => {
       .limit(5)
       .populate({
         path: "doctor_id",
-        select: "name",
+        select: "name profile",
       });
 
     res.status(200).json(doctors);
