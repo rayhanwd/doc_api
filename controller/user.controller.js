@@ -34,10 +34,11 @@ exports.UpdateUserData = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const updated = await User.findByIdAndUpdate(_id, req.body);
+    const updated = await await User.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    });
 
     return res.json(updated);
-    
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: "Internal server error" });
