@@ -11,5 +11,10 @@ router.patch(
   upload.single("file"),
   userController.UpdateUserData
 );
+router.patch(
+  "/updateone/user",
+  authenticateUser,
+  userController.UpdateUserDatav2
+);
 
 module.exports = router;
